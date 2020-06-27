@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+    <import resource="classpath:/META-INF/ioc-dependence-lookup.xml"/>
+
+
+<!--    静态方法创建-->
+   <bean id="user-by-static-method" class="spring.ioc.domain.User" factory-method="createUser"/>
+
+<!--通过工厂创建实例-->
+    <bean id = "beanFactory" class="bean.factory.DefaultUserFactory" />
+    <bean id="user-by-factory-method" factory-bean="beanFactory" factory-method="createUser"/>
+
+<!--通过FactoryBean实例化-->
+    <bean id="user-by-factory-bean" class="bean.factory.FactoryBeanInstance"/>
+
+</beans>
