@@ -27,4 +27,11 @@ public class User {
                 ", name='" + name + '\'' +
                 '}';
     }
+
+    public static User createUser() {
+        User user = new User();
+        user.setId(2L);
+        user.setName("超哥");
+        return user;
+    }
 }
