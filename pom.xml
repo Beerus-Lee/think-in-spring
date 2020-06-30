@@ -24,6 +24,7 @@
         <module>spring-ioc-overview</module>
         <module>spring-bean</module>
         <module>dependency-lookup</module>
+        <module>dependency-inject</module>
     </modules>
 
     <packaging>pom</packaging>
