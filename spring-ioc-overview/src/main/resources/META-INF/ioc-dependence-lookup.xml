@@ -9,6 +9,9 @@
     <bean id="user" class="spring.ioc.domain.User">
         <property name="id" value="1"/>
         <property name="name" value="超哥"/>
+        <property name="cityEnum" value="BEIJING"/>
+        <property name="resourceLocation" value="classpath:/META-INF/ioc-dependence-lookup.xml"/>
+        <property name="cities" value="BEIJING,SHANGHAI"/>
     </bean>
 
     <bean id="superUser" class="spring.ioc.domain.SuperUser" primary="true" parent="user">
