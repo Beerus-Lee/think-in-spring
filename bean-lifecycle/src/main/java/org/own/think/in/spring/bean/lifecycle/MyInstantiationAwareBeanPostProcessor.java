@@ -43,10 +43,33 @@ public class MyInstantiationAwareBeanPostProcessor implements InstantiationAware
             propertyValues.addPropertyValue("id","22222");
             if (propertyValues.contains("description")) {
                 propertyValues.removePropertyValue("description");
-                propertyValues.addPropertyValue("description","user holder v3");
+                propertyValues.addPropertyValue("description","user holder v2");
             }
             return propertyValues;
 
+        }
+        return null;
+    }
+
+    @Override
+    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+        if (ObjectUtils.nullSafeEquals("userHolder", beanName) && UserHolder.class.equals(bean.getClass())) {
+            UserHolder userHolder = (UserHolder)bean;
+            userHolder.setDescription("user holder v3");
+            System.out.println("postProcessBeforeInitialization: " + userHolder.getDescription());
+            return userHolder;
+        }
+
+        return null;
+    }
+
+    @Override
+    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+        if (ObjectUtils.nullSafeEquals("userHolder", beanName) && UserHolder.class.equals(bean.getClass())) {
+            UserHolder userHolder = (UserHolder)bean;
+            userHolder.setDescription("user holder v7");
+            System.out.println("postProcessAfterInitialization :" +userHolder.getDescription());
+            return userHolder;
         }
         return null;
     }

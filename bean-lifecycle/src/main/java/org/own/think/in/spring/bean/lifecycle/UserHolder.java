@@ -6,7 +6,11 @@ import org.springframework.context.EnvironmentAware;
 import org.springframework.core.env.Environment;
 import spring.ioc.domain.User;
 
-public class UserHolder implements BeanNameAware, BeanClassLoaderAware, BeanFactoryAware, EnvironmentAware {
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
+public class UserHolder implements BeanNameAware, BeanClassLoaderAware, BeanFactoryAware,
+        EnvironmentAware,InitializingBean,SmartInitializingSingleton,DisposableBean {
     private User user;
 
     private Long id;
@@ -69,6 +73,31 @@ public class UserHolder implements BeanNameAware, BeanClassLoaderAware, BeanFact
         this.user = user;
     }
 
+
+    @PostConstruct
+    public void init() {
+        this.description = "user holder v4";
+        System.out.println("@PostConstruct:" + this.description);
+    }
+
+    @PreDestroy
+    public void destoryMethod() {
+        this.description = "user holder v10";
+        System.out.println("@PreDestroy:" + this.description);
+    }
+
+    public void destoryBeanProcessor() {
+        this.description = "user holder v12";
+        System.out.println("destoryBeanProcessor:" + this.description);
+    }
+
+
+    public void initBeanProcessor() {
+        this.description = "user holder v6";
+        System.out.println("initBeanProcessor:" + this.description);
+    }
+
+
     @Override
     public String toString() {
         return "UserHolder{" +
@@ -98,5 +127,30 @@ public class UserHolder implements BeanNameAware, BeanClassLoaderAware, BeanFact
     @Override
     public void setEnvironment(Environment environment) {
         this.environment = environment;
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        this.description = "user holder v5";
+        System.out.println("afterPropertiesSet: " + this.description);
+    }
+
+    @Override
+    public void afterSingletonsInstantiated() {
+        this.description = "user holder v8";
+        System.out.println("SmartInitializingSingleton: " + this.description);
+    }
+
+    @Override
+    public void destroy() throws Exception {
+        this.description = "user holder v11";
+        System.out.println("DisposableBean: " + this.description);
+
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        this.description = "user holder 13";
+        System.out.println("jvm gc finalize: " + this.description);
     }
 }

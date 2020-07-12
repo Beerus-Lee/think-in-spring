@@ -7,7 +7,7 @@
         http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
      <bean class="org.own.think.in.spring.bean.lifecycle.MyInstantiationAwareBeanPostProcessor" />
 
-    <bean id="userHolder" class="org.own.think.in.spring.bean.lifecycle.UserHolder" autowire="constructor">
+    <bean id="userHolder" class="org.own.think.in.spring.bean.lifecycle.UserHolder" autowire="constructor" init-method="initBeanProcessor" destroy-method="destoryBeanProcessor">
         <property name="description"  value="user holder"/>
     </bean>
 
