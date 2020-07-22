@@ -14,6 +14,8 @@ public class User implements BeanNameAware {
 
     private CityEnum cityEnum;
 
+    private Company company;
+
 
     private List<CityEnum> cities;
 
@@ -65,14 +67,24 @@ public class User implements BeanNameAware {
         this.name = name;
     }
 
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", cityEnum=" + cityEnum +
+                ", company=" + company +
                 ", cities=" + cities +
                 ", resourceLocation=" + resourceLocation +
+                ", beanName='" + beanName + '\'' +
                 '}';
     }
 
