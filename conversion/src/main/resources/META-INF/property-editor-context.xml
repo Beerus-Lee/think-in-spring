@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+
+
+  <bean class="org.own.think.in.spring.conversion.CustomizedPropertyEditorRegistrar"/>
+
+  <bean id = "conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean" >
+      <property name="converters" >
+          <bean class="org.own.think.in.spring.conversion.PropertyToStringConvertor" />
+      </property>
+  </bean>
+
+
+    <bean id="user" class="spring.ioc.domain.User">
+        <property name="id" value="1"/>
+        <property name="name" value="超哥"/>
+        <property name="context" >
+            <value>
+                id =1
+                name = chao
+            </value>
+        </property>
+        <property name="contextAsText" ref = "context"/>
+
+    </bean>
+
+    <util:properties id = "context">
+        <prop key="id">1</prop>
+        <prop key="name">chao</prop>
+    </util:properties>
+
+
+</beans>

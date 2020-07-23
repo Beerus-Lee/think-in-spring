@@ -6,6 +6,7 @@ import org.springframework.core.io.Resource;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.util.List;
+import java.util.Properties;
 
 public class User implements BeanNameAware {
     private Long id;
@@ -22,6 +23,26 @@ public class User implements BeanNameAware {
     private Resource resourceLocation;
 
     private transient String beanName;
+
+    private Properties context;
+
+    private String contextAsText;
+
+    public Properties getContext() {
+        return context;
+    }
+
+    public void setContext(Properties context) {
+        this.context = context;
+    }
+
+    public String getContextAsText() {
+        return contextAsText;
+    }
+
+    public void setContextAsText(String contextAsText) {
+        this.contextAsText = contextAsText;
+    }
 
     public String getBeanName() {
         return beanName;
@@ -85,6 +106,8 @@ public class User implements BeanNameAware {
                 ", cities=" + cities +
                 ", resourceLocation=" + resourceLocation +
                 ", beanName='" + beanName + '\'' +
+                ", context=" + context +
+                ", contextAsText='" + contextAsText + '\'' +
                 '}';
     }
 
